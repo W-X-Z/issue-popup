@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import imgScreenshot from "../../imports/정상케이스/f635bf7bcd411230a6e0301d68f16c08fb1dff4e.png";
 import type { EnrichedStock, SelectedIssue } from "../../types/stock";
 import { LAYOUT } from "../constants/layout";
-import { pickRandomStocks } from "../utils/stockUtils";
+import { formatMarketTicker, pickRandomStocks } from "../utils/stockUtils";
 import { IssueDetailSheet } from "./IssueDetailSheet";
 import { StockPopup } from "./StockPopup";
 
@@ -58,9 +58,14 @@ function StockList({
                 selected ? "bg-[#eef4ff]" : "bg-white hover:bg-[#f7f7f7]"
               }`}
             >
-              <p className="font-['NanumBarunGothic:Bold',sans-serif] text-[22px] text-black leading-[28px] line-clamp-2 w-full">
-                {stock.name}
-              </p>
+              <div className="min-w-0 w-full">
+                <p className="font-['NanumBarunGothic:Bold',sans-serif] text-[22px] text-black leading-[28px] line-clamp-2">
+                  {stock.name}
+                </p>
+                <p className="font-['NanumBarunGothic:Regular',sans-serif] text-[15px] text-[#888] leading-[20px] mt-[4px]">
+                  {formatMarketTicker(stock.code)}
+                </p>
+              </div>
             </button>
           );
         })}

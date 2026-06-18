@@ -83,3 +83,24 @@ export function pickRandomStocks(count?: number): EnrichedStock[] {
 export function formatPrice(price: number): string {
   return price.toLocaleString("ko-KR");
 }
+
+export type MarketType = "KOSPI" | "KOSDAQ";
+
+/** 목업용 시장 구분 (6자리 종목코드 기반 추정) */
+export function inferMarket(code: string): MarketType {
+  if (code.startsWith("066") || code.startsWith("068") || code.startsWith("069")) {
+    return "KOSDAQ";
+  }
+  if (code.startsWith("00") || code.startsWith("01") || code.startsWith("02") || code.startsWith("03") || code.startsWith("04") || code.startsWith("05")) {
+    return "KOSPI";
+  }
+  const num = parseInt(code, 10);
+  if (!Number.isNaN(num) && num >= 100000 && num < 900000) {
+    return "KOSDAQ";
+  }
+  return "KOSPI";
+}
+
+export function formatMarketTicker(code: string): string {
+  return `${inferMarket(code)} ${code}`;
+}
