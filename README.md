@@ -16,15 +16,27 @@ npm run dev
 
 ## 배포 (GitHub Pages)
 
-GitHub Actions 없이 `gh-pages` 브랜치로 배포합니다.
+GitHub Actions 없이 배포합니다. 아래 두 방법 중 하나를 쓰면 됩니다.
+
+### 방법 A — `docs` 폴더 (권장)
 
 ```bash
 cd prototype
 npm install
+npm run deploy:docs
+git add ../docs && git commit -m "Deploy mockup" && git push
+```
+
+GitHub **Settings → Pages** → Source: **Deploy from a branch** → **main** / **/docs**
+
+### 방법 B — `gh-pages` 브랜치
+
+```bash
+cd prototype
 npm run deploy
 ```
 
-최초 1회: GitHub 레포 **Settings → Pages**에서 Source를 **Deploy from a branch** → **gh-pages** / **/(root)** 로 설정하세요.
+GitHub **Settings → Pages** → Source: **gh-pages** / **/(root)**
 
 ## 기능
 
