@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import imgScreenshot from "../../imports/정상케이스/f635bf7bcd411230a6e0301d68f16c08fb1dff4e.png";
 import type { EnrichedStock, SelectedIssue } from "../../types/stock";
 import { LAYOUT } from "../constants/layout";
-import { formatPrice, pickRandomStocks } from "../utils/stockUtils";
+import { pickRandomStocks } from "../utils/stockUtils";
 import { IssueDetailSheet } from "./IssueDetailSheet";
 import { StockPopup } from "./StockPopup";
 
@@ -37,57 +37,30 @@ function StockList({
 }: StockListProps) {
   return (
     <div
-      className="absolute left-0 top-[248px] w-[192px] z-10 flex flex-col overflow-hidden"
+      className="absolute left-0 top-[248px] w-[192px] z-10 flex flex-col overflow-hidden bg-white"
       style={{ bottom: bottomOffset }}
     >
-      <div className="flex items-center justify-between px-[20px] pb-[8px] shrink-0">
+      <div className="flex items-center justify-between px-[20px] py-[8px] shrink-0 bg-white">
         <p className="font-['NanumBarunGothic:Bold',sans-serif] text-[17px] text-[#333]">
           총 {stocks.length}개
         </p>
       </div>
-      <div className="flex flex-col overflow-y-auto flex-1 pb-2">
+      <div className="flex flex-col overflow-y-auto flex-1 pb-2 bg-white">
         {stocks.map((stock) => {
           const selected = stock.code === selectedCode;
-          const { display } = stock;
-          const priceColor = display.isUp ? "#ef2d26" : "#277fff";
 
           return (
             <button
               key={stock.code}
               type="button"
               onClick={() => onSelect(stock)}
-              className={`flex w-full items-start gap-[8px] px-[16px] py-[12px] text-left transition-colors ${
-                selected ? "bg-[#eef4ff]" : "bg-white/90 hover:bg-[#f5f5f5]"
+              className={`flex w-full items-center px-[20px] py-[16px] text-left transition-colors ${
+                selected ? "bg-[#eef4ff]" : "bg-white hover:bg-[#f7f7f7]"
               }`}
             >
-              <div className="mt-[2px] size-[26px] shrink-0 bg-[#ececec] flex items-center justify-center">
-                <span className="font-['Pretendard:Bold',sans-serif] text-[13px] text-[#666]">
-                  통
-                </span>
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="font-['NanumBarunGothic:Bold',sans-serif] text-[15px] text-black leading-[18px] line-clamp-2">
-                  {stock.name}
-                </p>
-                <p className="font-['NanumBarunGothic:Regular',sans-serif] text-[12px] text-[#888] mt-[2px]">
-                  KOSPI {stock.code}
-                </p>
-              </div>
-              <div className="shrink-0 text-right pt-[1px]">
-                <p
-                  className="font-['Roboto:Medium',sans-serif] text-[12px] leading-[14px] whitespace-nowrap"
-                  style={{ color: priceColor }}
-                >
-                  {formatPrice(display.price)}
-                </p>
-                <p
-                  className="font-['Roboto:Regular',sans-serif] text-[10px] mt-[2px] whitespace-nowrap"
-                  style={{ color: priceColor }}
-                >
-                  {display.isUp ? "▲" : "▼"}
-                  {display.changePercent}%
-                </p>
-              </div>
+              <p className="font-['NanumBarunGothic:Bold',sans-serif] text-[22px] text-black leading-[28px] line-clamp-2 w-full">
+                {stock.name}
+              </p>
             </button>
           );
         })}
@@ -136,7 +109,7 @@ export function InteractiveMockup() {
       </div>
 
       <div
-        className="absolute left-0 top-[248px] w-[192px] bg-white/80 z-[5]"
+        className="absolute left-0 top-[248px] w-[192px] bg-white z-[5]"
         style={{ bottom: LAYOUT.LIST_BOTTOM }}
       />
 
