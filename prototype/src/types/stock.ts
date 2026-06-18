@@ -1,15 +1,20 @@
 export type Sentiment = "호재" | "악재" | "소식";
 
+/** 1: 뉴스, 2: 공시 */
+export type DataType = 1 | 2;
+
 export interface IssueDetail {
   title: string;
   summary: string;
   reason: string;
   date: string;
+  dataType: DataType;
 }
 
 export interface NewsItem {
   title: string;
   date: string;
+  dataType?: DataType;
 }
 
 export interface StockDisplay {

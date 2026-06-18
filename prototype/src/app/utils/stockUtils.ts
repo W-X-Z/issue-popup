@@ -1,4 +1,4 @@
-import type { EnrichedStock, StockDisplay, StockIssue } from "../../types/stock";
+import type { DataType, EnrichedStock, StockDisplay, StockIssue } from "../../types/stock";
 import allStocks from "../../data/stockIssues.json";
 
 export const STOCK_POOL: StockIssue[] = allStocks;
@@ -103,4 +103,8 @@ export function inferMarket(code: string): MarketType {
 
 export function formatMarketTicker(code: string): string {
   return `${inferMarket(code)} ${code}`;
+}
+
+export function dataTypeLabel(dataType: DataType): "뉴스" | "공시" {
+  return dataType === 1 ? "뉴스" : "공시";
 }

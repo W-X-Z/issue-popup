@@ -1,4 +1,5 @@
 import type { SelectedIssue, Sentiment } from "../../types/stock";
+import { dataTypeLabel } from "../utils/stockUtils";
 
 const SENTIMENT_STYLE: Record<
   Sentiment,
@@ -41,16 +42,21 @@ export function IssueDetailSheet({ issue, onClose }: IssueDetailSheetProps) {
         <div className="overflow-y-auto flex-1 px-7 pb-10 pt-1">
           <div className="flex items-start justify-between gap-4 mb-5">
             <div className="flex flex-col gap-2.5 min-w-0">
-              <span
-                className="inline-flex self-start items-center px-4 py-1.5 rounded-full text-[17px] font-['NanumBarunGothic:Bold',sans-serif]"
-                style={{
-                  color: style.text,
-                  border: `1px solid ${style.border}`,
-                  backgroundColor: style.bg,
-                }}
-              >
-                {issue.sentiment}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span
+                  className="inline-flex self-start items-center px-4 py-1.5 rounded-full text-[17px] font-['NanumBarunGothic:Bold',sans-serif]"
+                  style={{
+                    color: style.text,
+                    border: `1px solid ${style.border}`,
+                    backgroundColor: style.bg,
+                  }}
+                >
+                  {issue.sentiment}
+                </span>
+                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-[17px] font-['NanumBarunGothic:Bold',sans-serif] text-[#555] border border-[#ccc] bg-[#f5f5f5]">
+                  {dataTypeLabel(issue.detail.dataType)}
+                </span>
+              </div>
               <p className="font-['NanumBarunGothic:Regular',sans-serif] text-[17px] text-[#888] leading-[24px]">
                 {issue.stockName} · {issue.stockCode}
               </p>

@@ -114,7 +114,7 @@ export function InteractiveMockup() {
       </div>
 
       <div
-        className="absolute left-0 top-[248px] w-[192px] bg-white z-[5]"
+        className="absolute left-0 top-[228px] w-[348px] bg-white z-[5] pointer-events-none"
         style={{ bottom: LAYOUT.LIST_BOTTOM }}
       />
 
