@@ -16,27 +16,14 @@ npm run dev
 
 ## 배포 (GitHub Pages)
 
-GitHub Actions 없이 배포합니다. 아래 두 방법 중 하나를 쓰면 됩니다.
-
-### 방법 A — `docs` 폴더 (권장)
+레포 루트에 빌드 결과를 올립니다. Pages 설정 변경 없이 동작합니다.
 
 ```bash
 cd prototype
 npm install
-npm run deploy:docs
-git add ../docs && git commit -m "Deploy mockup" && git push
+npm run deploy:root
+git add ../index.html ../assets ../.nojekyll && git commit -m "Deploy mockup" && git push
 ```
-
-GitHub **Settings → Pages** → Source: **Deploy from a branch** → **main** / **/docs**
-
-### 방법 B — `gh-pages` 브랜치
-
-```bash
-cd prototype
-npm run deploy
-```
-
-GitHub **Settings → Pages** → Source: **gh-pages** / **/(root)**
 
 ## 기능
 

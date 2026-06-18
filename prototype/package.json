@@ -7,7 +7,8 @@
     "build": "vite build",
     "dev": "vite",
     "deploy": "npm run build && gh-pages -d dist -m \"Deploy mockup\"",
-    "deploy:docs": "npm run build && rm -rf ../docs && cp -r dist ../docs && touch ../docs/.nojekyll"
+    "deploy:docs": "npm run build && rm -rf ../docs && cp -r dist ../docs && touch ../docs/.nojekyll",
+    "deploy:root": "npm run build && rm -rf ../assets ../index.html && cp -r dist/* .. && touch ../.nojekyll"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
